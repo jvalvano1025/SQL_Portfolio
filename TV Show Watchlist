@@ -1,0 +1,24 @@
+/*In this project, I create a data table for TV shows that I have watched and then use the UPDATE and DELETE operators to show what
+happens when you update and delete information from a database.*/
+
+CREATE TABLE watch_list (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    name TEXT,
+    platform TEXT,
+    seasons INTEGER);
+    
+INSERT INTO watch_list (name, platform, seasons) VALUES ("The Walking Dead", "Netflix", 11);
+INSERT INTO watch_list (name, platform, seasons) VALUES ("Criminal Minds", "Netflix", 16);
+INSERT INTO watch_list (name, platform, seasons) VALUES ("Modern Family", "Hulu",11);
+INSERT INTO watch_list (name, platform, seasons) VALUES ("The Office", "Peacock", 9);
+INSERT INTO watch_list (name, platform, seasons) VALUES ("Good Luck Charlie", "Netflix", 4);
+INSERT INTO watch_list (name, platform, seasons) VALUES ("The Big Bang Theory", "HBO", 12);
+INSERT INTO watch_list (name, platform, seasons) VALUES ("Friends", "HBO", 10);
+
+UPDATE watch_list SET platform = "Disney+" WHERE name = "Good Luck Charlie";
+
+SELECT * FROM watch_list;
+
+DELETE FROM watch_list WHERE name = "The Big Bang Theory";
+
+SELECT* FROM watch_list;
