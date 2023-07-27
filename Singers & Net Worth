@@ -1,0 +1,36 @@
+/* In this project, I create two tables- one on singers and one on their net worth- and use JOIN to join the tables. By using the
+JOIN operator it allows me to see the total net worth for each singer.*/
+
+CREATE TABLE singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER,
+    genre TEXT);
+    
+INSERT INTO singers (fullname, age, genre) VALUES ("Taylor Swift", 33, "pop");
+INSERT INTO singers (fullname, age, genre) VALUES ("Harry Styles", 29, "pop");
+INSERT INTO singers (fullname, age, genre) VALUES ("Niall Horan", 29, "pop");
+INSERT INTO singers (fullname, age, genre) VALUES ("Gracie Abrams", 23, "pop");
+INSERT INTO singers (fullname, age, genre) VALUES ("Maisie Peters", 23, "pop");
+INSERT INTO singers (fullname, age, genre) VALUES ("Ed Sheeran", 32, "pop");
+INSERT INTO singers (fullname, age, genre) VALUES ("Luke Hemmings", 27, "rock");
+
+CREATE TABLE worth (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    singer_id INTEGER,
+    net_worth TEXT);
+    
+INSERT INTO worth (singer_id, net_worth) VALUES (1, "$740 million");
+INSERT INTO worth (singer_id, net_worth) VALUES (2, "$120 million");
+INSERT INTO worth (singer_id, net_worth) VALUES (3, "$70 million");
+INSERT INTO worth (singer_id, net_worth) VALUES (4, "$5 million");
+INSERT INTO worth (singer_id, net_worth) VALUES (5, "$2 million");
+INSERT INTO worth (singer_id, net_worth) VALUES (6, "$200 million");
+INSERT INTO worth (singer_id, net_worth) VALUES (7, "$20 million");
+
+/*Return total net worth for each singer*/
+
+SELECT singers.fullname, worth.net_worth
+FROM singers
+JOIN worth
+ON singers.id = worth.singer_id;
