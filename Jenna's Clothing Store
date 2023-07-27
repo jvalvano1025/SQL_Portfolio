@@ -1,0 +1,35 @@
+/*In this project I create my own table regarding products at my made up clothing store and insert data into the table.
+Addtionally, I draw some insights from the data I created by analyzing the clothing items by price (lowest to highest) to see which items
+cost the least and which cost the most. I also look into the amount of total products I have on hand by getting the sum of the quantity
+as well as the average price of the items in my store.*/
+
+CREATE TABLE clothing
+  (id INTEGER PRIMARY KEY, 
+  item_name TEXT, 
+  color TEXT, 
+  quantity INTEGER, 
+  price INTEGER);
+
+INSERT INTO clothing VALUES (1, "shirt", "black", 55, 10);
+INSERT INTO clothing VALUES (2, "pants", "brown", 27, 25);
+INSERT INTO clothing VALUES (3, "socks", "white", 30, 5);
+INSERT INTO clothing VALUES (4, "hat", "blue", 17, 10);
+INSERT INTO clothing VALUES (5, "tee", "purple", 28, 15);
+INSERT INTO clothing VALUES (6, "skirt", "gray", 50, 35);
+INSERT INTO clothing VALUES (7, "shoes", "white", 60, 70);
+INSERT INTO clothing VALUES (8, "pajamas", "orange", 80, 22);
+INSERT INTO clothing VALUES (9, "necklace", "gold", 10, 20);
+INSERT INTO clothing VALUES (10, "ring", "silver", 18, 80);
+INSERT INTO clothing VALUES (11, "tank", "red", 50, 15);
+INSERT INTO clothing VALUES (12, "slacks", "black", 40, 60);
+INSERT INTO clothing VALUES (13, "blouse", "white", 18, 40);
+INSERT INTO clothing VALUES (14, "shorts", "green", 43, 50);
+INSERT INTO clothing VALUES (15, "dress", "navy", 72, 65);
+
+SELECT * FROM clothing ORDER BY price;
+
+SELECT SUM (quantity) FROM clothing;
+
+SELECT AVG (price) FROM clothing;
+
+
