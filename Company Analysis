@@ -1,0 +1,217 @@
+--In this project I created three tables- one on Companies, one on CEOs, and one on Products. 
+I inserted data into all these tables so that I could use the data to perform queries. 
+Queries I performed in this project include aggregate functions (Sum, Max, Min, Avg), group by/order by statements, like statements, 
+and/or operators, case statements, having statements, and multiple joins. 
+By performing these queries I was able to extract valuable insights from this database such as which company has the most sales, 
+who are the CEOs of each company, what products each company sells, and much more.--
+
+CREATE TABLE Company (
+ID INT,
+CompanyName VARCHAR(50),
+Industry VARCHAR(50),
+AnnualSales DECIMAL (5,2));
+
+INSERT INTO Company VALUES (1, 'Apple', 'Tech', 394.3);
+INSERT INTO Company VALUES (2, 'Microsoft', 'Tech', 198.3);
+INSERT INTO Company VALUES (3, 'Amazon', 'Tech', 513.98);
+INSERT INTO Company VALUES (4, 'P&G', 'CPG', 80.97);
+INSERT INTO Company VALUES (5, 'Unilever', 'CPG', 63.29);
+INSERT INTO Company VALUES (6, 'Mondelez', 'CPG', 32.89);
+INSERT INTO Company VALUES (7, 'PepsiCo', 'CPG', 86.4);
+INSERT INTO Company VALUES (8, 'J&J', 'Pharma', 97.77);
+INSERT INTO Company VALUES (9, 'Tesla', 'Auto', 81.5);
+INSERT INTO Company VALUES (10, 'Google', 'Tech', 279.8);
+INSERT INTO Company VALUES (11, 'Ford', 'Auto', 165.05);
+INSERT INTO Company VALUES (12, 'Merck', 'Pharma', 57.87);
+INSERT INTO Company VALUES (13, 'Pfizer', 'Pharma', 92.95);
+INSERT INTO Company VALUES (14, 'Nestle', 'CPG', 102.59);
+INSERT INTO Company VALUES (15, 'GeneralMotors', 'Auto', 156.7);
+
+CREATE TABLE Ceos (
+ID INT,
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+Gender VARCHAR (10));
+
+INSERT INTO Ceos VALUES (1, 'Tim', 'Cook', 'M'); 
+INSERT INTO Ceos VALUES (2, 'Satya', 'Nadella', 'M');
+INSERT INTO Ceos VALUES (3, 'Andy', 'Jassy', 'M');
+INSERT INTO Ceos VALUES (4, 'Jon', 'Moeller', 'M');
+INSERT INTO Ceos VALUES (5, 'Hein', 'Schumacher', 'M');
+INSERT INTO Ceos VALUES (6, 'Dirk', 'VanDePut', 'M');
+INSERT INTO Ceos VALUES (7, 'Ramon', 'Laguarta', 'M');
+INSERT INTO Ceos VALUES (8, 'Joaquin', 'Duato', 'M');
+INSERT INTO Ceos VALUES (9, 'Elon', 'Musk', 'M');
+INSERT INTO Ceos VALUES (10, 'Sundar', 'Pichai', 'M');
+INSERT INTO Ceos VALUES (11, 'Jim', 'Farley', 'M');
+INSERT INTO Ceos VALUES (12, 'Robert', 'Davis', 'M');
+INSERT INTO Ceos VALUES (13, 'Albert', 'Bourla', 'M');
+INSERT INTO Ceos VALUES (14, 'Mark', 'Schneider', 'M');
+INSERT INTO Ceos VALUES (15, 'Mary', 'Barra', 'F');
+
+CREATE TABLE Product (
+ID INT,
+ProductName VARCHAR (75));
+
+INSERT INTO Product VALUES (1, 'iPhone');
+INSERT INTO Product VALUES (1, 'iPad');
+INSERT INTO Product VALUES (1, 'Mac');
+INSERT INTO Product VALUES (1, 'AirPods');
+INSERT INTO Product VALUES (2, 'Office365');
+INSERT INTO Product VALUES (2, 'Surface'); 
+INSERT INTO Product VALUES (3, 'Toaster');
+INSERT INTO Product VALUES (3, 'Slippers');
+INSERT INTO Product VALUES (3, 'Pens');
+INSERT INTO Product VALUES (3, 'Shirts');
+INSERT INTO Product VALUES (3, 'Stickers');
+INSERT INTO Product VALUES (3, 'Blowdryer'); 
+INSERT INTO Product VALUES (4, 'Pampers');
+INSERT INTO Product VALUES (4, 'Tide');
+INSERT INTO Product VALUES (4, 'Bounce');
+INSERT INTO Product VALUES (4, 'Charmin');
+INSERT INTO Product VALUES (4, 'Bounty');
+INSERT INTO Product VALUES (4, 'Vicks');
+INSERT INTO Product VALUES (4, 'Febreze'); 
+INSERT INTO Product VALUES (5, 'Axe');
+INSERT INTO Product VALUES (5, 'Vaseline');
+INSERT INTO Product VALUES (5, 'Dove'); 
+INSERT INTO Product VALUES (6, 'Oreo');
+INSERT INTO Product VALUES (6, 'Ritz');
+INSERT INTO Product VALUES (6, 'Toblerone');
+INSERT INTO Product VALUES (6, 'Trident'); 
+INSERT INTO Product VALUES (7, 'Pepsi');
+INSERT INTO Product VALUES (7, 'Cheetos');
+INSERT INTO Product VALUES (7, 'Gatorade'); 
+INSERT INTO Product VALUES (8, 'Benadryl');
+INSERT INTO Product VALUES (8, 'Tylenol'); 
+INSERT INTO Product VALUES (9, 'ModelY');
+INSERT INTO Product VALUES (9, 'ModelX');
+INSERT INTO Product VALUES (9, 'ModelS'); 
+INSERT INTO Product VALUES (10, 'Tablet');
+INSERT INTO Product VALUES (10, 'Nest'); 
+INSERT INTO Product VALUES (11, 'Escape');
+INSERT INTO Product VALUES (11, 'Bronco');
+INSERT INTO Product VALUES (11, 'Explorer'); 
+INSERT INTO Product VALUES (12, 'Gardasil');
+INSERT INTO Product VALUES (12, 'MMR'); 
+INSERT INTO Product VALUES (13, 'Eliquis'); 
+INSERT INTO Product VALUES (14, 'Cheerios');
+INSERT INTO Product VALUES (14, 'KitKat');
+INSERT INTO Product VALUES (14, 'Nesquik');
+INSERT INTO Product VALUES (14, 'Smarties'); 
+INSERT INTO Product VALUES (15, 'Cadillac');
+INSERT INTO Product VALUES (15, 'Buick');
+
+--What is the least sales a company makes?--
+SELECT MIN(AnnualSales) FROM Company;
+
+--Which company has the highest sales?--
+SELECT MAX(AnnualSales),CompanyName FROM Company GROUP BY CompanyName;
+
+-- Show sales by company from lowest to highest--
+SELECT AnnualSales, CompanyName FROM Company ORDER BY AnnualSales ASC;
+
+--Show average sales for the CPG industry--
+SELECT AVG(AnnualSales) AS CPG_Avg_Sales FROM Company WHERE Industry= 'CPG';
+
+--How much annual sales did all these companies make?--
+SELECT SUM (AnnualSales) AS Total_Sales FROM Company;
+
+--What companies are in the Pharma industry?--
+SELECT CompanyName FROM Company WHERE Industry= 'Pharma';
+
+--Which companies have sales over 100B?--
+SELECT CompanyName, AnnualSales FROM Company WHERE AnnualSales>100;
+
+--Which CEOs start with the letter A?--
+SELECT * FROM Ceos WHERE FirstName LIKE 'A%';
+
+--How many female CEOs are there?--
+SELECT COUNT (Gender) FROM Ceos WHERE Gender='F';
+
+--Which companies have sales lower than 300B?--
+SELECT CompanyName, AnnualSales FROM Company WHERE AnnualSales<300;
+
+--Which tech companies have sales greater than 200B?--
+SELECT CompanyName FROM Company WHERE Industry= 'Tech' AND AnnualSales>200;
+
+--Select companies that are in the auto industry or have sales less than 90B?--
+SELECT CompanyName FROM Company WHERE Industry='Auto' OR AnnualSales<90;
+
+--What companies are in the CPG industry?--
+SELECT CompanyName FROM Company WHERE Industry IN ('CPG');
+
+--What products end with the letter L?--
+SELECT ProductName FROM Product WHERE ProductName LIKE '%l';
+
+--How much sales did the Auto industry make?--
+SELECT SUM(AnnualSales) AS Auto_Sales FROM Company WHERE Industry='Auto';
+
+--If sales are greater than 150 label as top, between 75 and 150 label as middle, and under 75 label as bottom.--
+SELECT *,
+CASE 
+	WHEN AnnualSales >150 THEN 'Top'
+	WHEN AnnualSales BETWEEN 75 AND 150 THEN 'Middle'
+	ELSE 'Bottom'
+END AS SalesStatus
+FROM Company;
+
+--Which industries have 4 or more companies in them?--
+SELECT Industry FROM Company GROUP BY Industry HAVING COUNT(*)>=4;
+
+--Who is the CEO of each company?--
+SELECT Company.CompanyName, Ceos.FirstName, Ceos.LastName
+FROM Company
+JOIN Ceos
+ON Company.ID = Ceos.ID;
+
+--What is the annual sales for each CEO?--
+SELECT Company.AnnualSales, Ceos.FirstName, Ceos.LastName
+FROM Company
+JOIN Ceos
+ON Company.ID = Ceos.ID;
+
+--Which CEOs are in the Pharma industry?--
+SELECT Company.Industry, Ceos.FirstName, Ceos.LastName
+FROM Company
+JOIN Ceos
+ON Company.ID = Ceos.ID
+WHERE Industry='Pharma';
+
+--What products does each company sell?--
+SELECT Company.CompanyName, Product.ProductName
+FROM Company
+JOIN Product
+ON Company.ID = Product.ID;
+
+--List all the products in the CPG industry.--
+SELECT Company.Industry, Product.ProductName
+FROM Company
+JOIN Product
+ON Company.ID = Product.ID
+WHERE Industry='CPG';
+
+--What products are not in the Auto industry?--
+SELECT Product.ProductName
+FROM Company
+JOIN Product
+ON Company.ID = Product.ID
+WHERE Industry <> 'Auto';
+
+--What does Apple sell?--
+SELECT Company.CompanyName, Product.ProductName
+FROM Company
+JOIN Product
+ON Company.ID = Product.ID
+WHERE CompanyName = 'Apple';
+
+--How many products does P&G sell?--
+SELECT CompanyName, COUNT(ProductName)
+FROM Company
+JOIN Product
+ON Company.ID = Product.ID
+WHERE CompanyName = 'P&G'
+GROUP BY CompanyName;
+
+--Update Pfizer's annual sales to 93.95.--
+UPDATE Company SET AnnualSales=93.95 WHERE CompanyName='Pfizer';
